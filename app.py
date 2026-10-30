@@ -38,180 +38,175 @@ st.set_page_config(
 
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@400;500;600;700;800&display=swap');
 
-html, body, [class*="css"] { font-family: Inter, sans-serif; }
-.stApp { background: #071019; color: #E5EDF5; }
-[data-testid="stSidebar"] {
-    background: #0B1622;
-    border-right: 1px solid #203444;
+:root {
+    --shield-bg: #080C09;
+    --shield-panel: #101812;
+    --shield-panel-2: #141F17;
+    --shield-border: #263B2B;
+    --shield-green: #55F477;
+    --shield-text: #E6F2E8;
+    --shield-muted: #A5B7A8;
 }
-.block-container { padding-top: 1.5rem; max-width: 1600px; }
-h1, h2, h3 { color: #F1F7FB !important; }
-p, label { color: #B6C5D3; }
+
+html, body, [class*="css"] {
+    font-family: Inter, sans-serif;
+}
+
+.stApp {
+    background: var(--shield-bg);
+    color: var(--shield-text);
+}
+
+[data-testid="stHeader"] {
+    background: #080C09;
+}
+
+[data-testid="stSidebar"] {
+    background: #0B120D;
+    border-right: 1px solid var(--shield-border);
+}
+
+.block-container {
+    padding-top: 1.5rem;
+    max-width: 1600px;
+}
+
+h1, h2, h3, h4 {
+    color: #F0FFF2 !important;
+}
+
+p, label, .stMarkdown {
+    color: var(--shield-text);
+}
+
+.stCaption, [data-testid="stCaptionContainer"] {
+    color: var(--shield-muted) !important;
+}
+
 .shield-header {
     padding: 24px;
-    border: 1px solid #21434B;
-    border-radius: 16px;
-    background: linear-gradient(120deg, #102630, #0B1723 75%);
-    margin-bottom: 24px;
-}
-.shield-title {
-    color: #48F0C1;
-    font-size: 34px;
-    font-weight: 800;
-    letter-spacing: 4px;
-}
-.shield-subtitle { color: #B3C6D3; font-size: 12px; margin-top: 7px; }
-.metric-card {
-    background: #0D1B28;
-    border: 1px solid #203444;
+    border: 1px solid #347A43;
     border-radius: 12px;
+    background: linear-gradient(120deg, #122319, #090F0B);
+    margin-bottom: 24px;
+    box-shadow: 0 0 22px rgba(85,244,119,0.07);
+}
+
+.shield-title {
+    color: var(--shield-green);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 38px;
+    font-weight: 800;
+    letter-spacing: 5px;
+    text-shadow: 0 0 14px rgba(85,244,119,0.3);
+}
+
+.shield-subtitle {
+    color: #B6CDBA;
+    font-size: 12px;
+    margin-top: 7px;
+    letter-spacing: 1px;
+}
+
+.metric-card {
+    background: var(--shield-panel);
+    border: 1px solid var(--shield-border);
+    border-radius: 10px;
     padding: 18px;
     min-height: 108px;
 }
-.metric-label { color: #91A7B8; font-size: 11px; letter-spacing: 1px; }
+
+.metric-label {
+    color: #B3C5B7;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
 .metric-value {
-    color: #48F0C1;
+    color: var(--shield-green);
+    font-family: 'Share Tech Mono', monospace;
     font-size: 29px;
     font-weight: 800;
     margin-top: 9px;
 }
-.small-muted { color: #8FA6B7; font-size: 12px; }
-div[data-testid="stDataFrame"] { border: 1px solid #203444; border-radius: 9px; }
-.stButton button, .stDownloadButton button { border-radius: 8px; font-weight: 600; }
-hr { border-color: #203444; }
 
-/* SHIELD green SOC accents */
-:root {
-    --shield-green: #48F0A8;
-    --shield-green-dark: #123B2B;
+.small-muted {
+    color: var(--shield-muted);
+    font-size: 12px;
 }
+
+[data-testid="stDataFrame"] {
+    border: 1px solid var(--shield-border);
+    border-radius: 9px;
+}
+
 .stButton button, .stDownloadButton button {
-    border: 1px solid #287A55;
+    background: #14251A;
+    color: #E8F5EA;
+    border: 1px solid #347A43;
+    border-radius: 7px;
+    font-weight: 600;
     transition: all 0.18s ease;
 }
+
 .stButton button:hover, .stDownloadButton button:hover {
-    border-color: #48F0A8;
-    color: #48F0A8;
-    box-shadow: 0 0 10px rgba(72, 240, 168, 0.14);
-}
-[data-testid="stSidebar"] [aria-current="page"] {
-    background-color: #123B2B;
-}
-[data-testid="stMetricValue"] {
-    color: #48F0A8;
-}
-.stProgress > div > div > div > div {
-    background-color: #48F0A8;
+    background: #1D3925;
+    color: var(--shield-green);
+    border-color: var(--shield-green);
+    box-shadow: 0 0 12px rgba(85,244,119,0.15);
 }
 
-/* SHIELD_UI_POLISH_V1 */
-
-/* Green accent and cleaner typography */
-.stApp {
-    background:
-        radial-gradient(ellipse at 5% 0%, rgba(22, 101, 52, 0.12), transparent 36%),
-        #071019;
-}
-.shield-header {
-    border-color: rgba(72, 240, 168, 0.35);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.16);
-}
-.shield-title, .metric-value {
-    text-shadow: 0 0 18px rgba(72, 240, 168, 0.12);
-}
-
-/* Sidebar navigation */
-[data-testid="stSidebar"] {
-    background: linear-gradient(180deg, #0B1622 0%, #09131D 100%);
-}
-[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p {
-    line-height: 1.55;
-}
 [data-testid="stSidebar"] div[role="radiogroup"] label {
-    border-radius: 9px;
+    border-radius: 7px;
     padding: 8px 10px;
     margin: 2px 0;
     border: 1px solid transparent;
-    transition: background 0.15s ease, border-color 0.15s ease;
 }
+
 [data-testid="stSidebar"] div[role="radiogroup"] label:hover {
-    background: #10271F;
-    border-color: #245B43;
-}
-[data-testid="stSidebar"] div[role="radiogroup"] label p {
-    color: #D7E6DF !important;
+    background: #17291C;
+    border-color: #347A43;
 }
 
-/* Buttons */
-.stButton button, .stDownloadButton button,
-[data-testid="stFormSubmitButton"] button {
-    background: linear-gradient(135deg, #123B2B, #0D2A21);
-    color: #DFFFF0;
-    border: 1px solid #287A55;
-    border-radius: 9px;
-    min-height: 40px;
-    font-weight: 650;
-}
-.stButton button:hover, .stDownloadButton button:hover,
-[data-testid="stFormSubmitButton"] button:hover {
-    background: #174A35;
-    border-color: #48F0A8;
-    color: #FFFFFF;
-    box-shadow: 0 0 14px rgba(72, 240, 168, 0.13);
+[data-testid="stSidebar"] [aria-checked="true"] {
+    background: #193422;
+    border-color: #55F477;
 }
 
-/* Metrics */
-[data-testid="stMetric"] {
-    background: linear-gradient(145deg, #0D1B28, #0B1922);
-    border: 1px solid #203D36;
-    border-radius: 12px;
-    padding: 14px 16px;
-}
-[data-testid="stMetricLabel"] p {
-    color: #9DB8AC !important;
-    font-size: 0.82rem;
-}
 [data-testid="stMetricValue"] {
-    color: #48F0A8 !important;
-    font-weight: 750;
+    color: var(--shield-green);
 }
 
-/* Inputs */
-.stTextInput input, .stTextArea textarea,
-.stSelectbox [data-baseweb="select"],
-.stMultiSelect [data-baseweb="select"] {
-    background-color: #0B1722;
-    border-color: #29483D;
-    border-radius: 8px;
-}
-.stTextInput input:focus, .stTextArea textarea:focus {
-    border-color: #48F0A8;
-    box-shadow: 0 0 0 1px #48F0A8;
-}
-
-/* Tables, expanders and status messages */
-div[data-testid="stDataFrame"] {
-    border: 1px solid #29483D;
-    border-radius: 10px;
-    overflow: hidden;
-}
-[data-testid="stExpander"] {
-    background: rgba(13, 27, 40, 0.65);
-    border: 1px solid #203D36;
-    border-radius: 10px;
-}
-[data-testid="stAlert"] {
-    border-radius: 10px;
-}
 .stProgress > div > div > div > div {
-    background-color: #48F0A8;
-}
-a {
-    color: #62EFB2 !important;
+    background-color: var(--shield-green);
 }
 
+input, textarea, [data-baseweb="select"] {
+    background-color: #111A13 !important;
+    color: #E6F2E8 !important;
+}
+
+hr {
+    border-color: var(--shield-border);
+}
+
+div[data-testid="stAlert"] {
+    border: 1px solid var(--shield-border);
+}
+
+.js-plotly-plot .plotly text {
+    fill: #DDEBE0 !important;
+}
+
+.js-plotly-plot .legend text {
+    fill: #E6F2E8 !important;
+}
+
+footer {
+    visibility: hidden;
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -221,12 +216,60 @@ a {
 # =========================================================
 
 @st.cache_data(show_spinner=False)
+@st.cache_data(show_spinner=False)
 def load_logs(path, mtime_ns=0, file_size=0):
     path = Path(path)
-    columns = ["Line", "Timestamp", "Event Type", "Raw Log"]
+
+    columns = [
+        "Line", "Timestamp", "Event Type", "Raw Log",
+        "Event ID", "Level", "Provider", "Message"
+    ]
 
     if not path.is_file():
         return pd.DataFrame(columns=columns)
+
+    records = []
+
+    try:
+        if path.suffix.lower() == ".json":
+            from log_parser import load_windows_json
+
+            records = load_windows_json(path)
+
+        else:
+            with path.open(
+                "r", encoding="utf-8", errors="replace"
+            ) as file:
+                for number, raw in enumerate(file, start=1):
+                    raw = raw.rstrip("\r\n")
+                    if not raw.strip():
+                        continue
+
+                    match = re.match(
+                        r"^(\d{4}-\d{2}-\d{2}[T ][^\s]+)", raw
+                    )
+                    timestamp = match.group(1) if match else "Unknown"
+
+                    try:
+                        event_type = classify(raw)
+                    except Exception:
+                        event_type = "other"
+
+                    records.append({
+                        "Line": number,
+                        "Timestamp": timestamp,
+                        "Event Type": str(event_type),
+                        "Raw Log": raw,
+                        "Event ID": None,
+                        "Level": None,
+                        "Provider": None,
+                        "Message": raw,
+                    })
+
+    except (OSError, ValueError, json.JSONDecodeError) as exc:
+        st.error(f"Could not read log file: {exc}")
+
+    return pd.DataFrame(records, columns=columns)
 
     records = []
 
@@ -655,7 +698,7 @@ if "active_log" not in st.session_state:
 
 uploaded = st.sidebar.file_uploader(
     "Upload a log file",
-    type=["log", "txt", "journal", "csv"],
+    type=["log", "txt", "journal", "csv", "json"],
 )
 
 if uploaded is not None:
@@ -995,12 +1038,20 @@ elif page == "Overview":
 
     auth_failures = 0
     if not df.empty:
-        auth_failures = int(
-            df["Event Type"].astype(str).str.contains(
-                r"pam_authentication_failure|authentication.failure|ssh_login_failure|ssh_failed_password|ssh_invalid_user|failed password|invalid user",
-                case=False, regex=True, na=False,
-            ).sum()
+        event_types = df["Event Type"].astype(str)
+
+        linux_failures = event_types.str.contains(
+            r"pam_authentication_failure|authentication.failure|ssh_login_failure|ssh_failed_password|ssh_invalid_user|failed password|invalid user",
+            case=False, regex=True, na=False,
         )
+
+        windows_failures = (
+            pd.to_numeric(df["Event ID"], errors="coerce") == 4625
+            if "Event ID" in df.columns
+            else pd.Series(False, index=df.index)
+        )
+
+        auth_failures = int((linux_failures | windows_failures).sum())
 
     metrics = [
         ("LOG LINES ANALYSED", f"{total_lines:,}"),
